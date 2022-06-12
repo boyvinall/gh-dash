@@ -108,6 +108,7 @@ func (pr PullRequest) renderTitle() string {
 	return lipgloss.NewStyle().
 		Inline(true).
 		Foreground(styles.DefaultTheme.SecondaryText).
+		Faint(pr.Data.IsDraft).
 		Render(
 			fmt.Sprintf("#%d %s",
 				pr.Data.Number,
