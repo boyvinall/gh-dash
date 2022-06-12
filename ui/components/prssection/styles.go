@@ -6,7 +6,7 @@ var (
 	ciCellWidth        = lipgloss.Width(" CI ")
 	linesCellWidth     = lipgloss.Width(" 123450 / -123450 ")
 	updatedAtCellWidth = lipgloss.Width("2mo ago")
-	prRepoCellWidth    = 15
+	prRepoCellWidth    = 30
 	prAuthorCellWidth  = 15
 	ContainerPadding   = 1
 

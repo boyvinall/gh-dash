@@ -121,7 +121,7 @@ func (pr PullRequest) renderAuthor() string {
 }
 
 func (pr PullRequest) renderRepoName() string {
-	repoName := utils.TruncateString(pr.Data.HeadRepository.Name, 18)
+	repoName := utils.TruncateString(pr.Data.HeadRepository.Name, 30)
 	return lipgloss.NewStyle().
 		Render(repoName)
 }

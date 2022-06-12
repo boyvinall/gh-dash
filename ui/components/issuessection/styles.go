@@ -6,7 +6,7 @@ var (
 	ciCellWidth               = lipgloss.Width(" CI ")
 	linesCellWidth            = lipgloss.Width(" 123450 / -123450 ")
 	updatedAtCellWidth        = lipgloss.Width("2mo ago")
-	issueRepoCellWidth        = 15
+	issueRepoCellWidth        = 30
 	issueAuthorCellWidth      = 15
 	issueAssigneesCellWidth   = 20
 	issueNumCommentsCellWidth = 6

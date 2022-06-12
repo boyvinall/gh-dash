@@ -34,7 +34,7 @@ func (issue *Issue) renderUpdateAt() string {
 }
 
 func (issue *Issue) renderRepoName() string {
-	repoName := utils.TruncateString(issue.Data.Repository.Name, 18)
+	repoName := utils.TruncateString(issue.Data.Repository.Name, 30)
 	return lipgloss.NewStyle().
 		Render(repoName)
 }
