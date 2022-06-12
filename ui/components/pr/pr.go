@@ -110,8 +110,8 @@ func (pr PullRequest) renderTitle() string {
 		Foreground(styles.DefaultTheme.SecondaryText).
 		Faint(pr.Data.IsDraft).
 		Render(
-			fmt.Sprintf("#%d %s",
-				pr.Data.Number,
+			fmt.Sprintf("%5s %s",
+				fmt.Sprintf("#%d", pr.Data.Number),
 				titleText.Copy().Render(pr.Data.Title),
 			),
 		)
