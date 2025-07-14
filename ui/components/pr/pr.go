@@ -53,25 +53,27 @@ func (pr PullRequest) GetStatusChecksRollup() string {
 	}
 
 	accStatus := "SUCCESS"
-	mostRecentCommit := pr.Data.Commits.Nodes[0].Commit
-	for _, statusCheck := range mostRecentCommit.StatusCheckRollup.Contexts.Nodes {
-		var conclusion string
-		if statusCheck.Typename == "CheckRun" {
-			conclusion = string(statusCheck.CheckRun.Conclusion)
-			status := string(statusCheck.CheckRun.Status)
-			if isStatusWaiting(status) {
-				accStatus = "PENDING"
+	if len(pr.Data.Commits.Nodes) > 0 {
+		mostRecentCommit := pr.Data.Commits.Nodes[0].Commit
+		for _, statusCheck := range mostRecentCommit.StatusCheckRollup.Contexts.Nodes {
+			var conclusion string
+			if statusCheck.Typename == "CheckRun" {
+				conclusion = string(statusCheck.CheckRun.Conclusion)
+				status := string(statusCheck.CheckRun.Status)
+				if isStatusWaiting(status) {
+					accStatus = "PENDING"
+				}
+			} else if statusCheck.Typename == "StatusContext" {
+				conclusion = string(statusCheck.StatusContext.State)
+				if isStatusWaiting(conclusion) {
+					accStatus = "PENDING"
+				}
 			}
-		} else if statusCheck.Typename == "StatusContext" {
-			conclusion = string(statusCheck.StatusContext.State)
-			if isStatusWaiting(conclusion) {
-				accStatus = "PENDING"
-			}
-		}
 
-		if isConclusionAFailure(conclusion) {
-			accStatus = "FAILURE"
-			break
+			if isConclusionAFailure(conclusion) {
+				accStatus = "FAILURE"
+				break
+			}
 		}
 	}
 
